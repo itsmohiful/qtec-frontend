@@ -1,20 +1,20 @@
-export default function Filter({ item, handleCheck }) {
+export default function Filter({ filterItem, selectItem, handleCheck }) {
     return (
     <div className="px-4 relative flex items-start">
         <div className="flex h-6 items-center">
             <input
-                id={item.value}
-                aria-describedby="comments-description"
-                name={item.value}
-                type="checkbox"
                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 cursor-pointer"
-                onChange={() => handleCheck(item)}
+                aria-describedby="comments-description"
+                value={filterItem?.slug}
+                type="checkbox"
+                checked={selectItem.includes(filterItem?.slug)}
+                onChange={(event) => handleCheck(event)}
             />
         </div>
 
         <div className="ml-3 text-sm leading-6">
-            <label htmlFor={item.value} className="font-medium text-gray-900 cursor-pointer">
-                {item.name}
+            <label htmlFor={filterItem?.slug} className="font-medium text-gray-900 cursor-pointer">
+                {filterItem?.name}
             </label>
         </div>
     </div>

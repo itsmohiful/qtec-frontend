@@ -1,17 +1,54 @@
-import p1  from '../images/p1.jpeg';
-import p2  from '../images/p2.jpeg';
-import p3  from '../images/p3.jpeg';
 import NavBar from './NavBar.component';
 
 
-export default function HomeComponent(){
+export default function HomeComponent({products}){
     return (
         <div className="container bg-white">
             {/* navigation */}
             <NavBar />
 
-            <div className="row">
-                <div className="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
+            <div className="row" style={{paddingLeft:'3rem'}}>
+
+                <>
+
+                    {!products.length &&(
+                        <div style={{width:'100%', minHeight:'100vh', display:'flex', justifyContent:'center', alignItems:'center', fontWeight:'600', fontSize:'20px', margin:'auto auto'}}>No data found according to filtering...</div>
+                    )}
+
+                    {!!products.length && (products.map((product, index)=>{
+                        return (
+                            <div key={product?.slug + index} className="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
+                                <div className="product"> 
+                                    <img src={product?.image} alt={product?.name} />
+
+                                    <ul className="d-flex align-items-center justify-content-center list-unstyled icons">
+                                        <li className="icon"><span className="fas fa-expand-arrows-alt"></span></li>
+                                        <li className="icon mx-3"><span className="far fa-heart"></span></li>
+                                        <li className="icon"><span className="fas fa-shopping-bag"></span></li>
+                                    </ul>
+                                </div>
+
+                                <div className="tag bg-red">{product?.type?.name}</div>
+                                <div className="title pt-4 pb-1">{product?.name}</div>
+
+                                <div className="d-flex align-content-center justify-content-center"> 
+                                    <span className="fas fa-star"></span> 
+                                    <span className="fas fa-star"></span> 
+                                    <span className="fas fa-star"></span> 
+                                    <span className="fas fa-star"></span> 
+                                    <span className="fas fa-star"></span> 
+                                </div>
+
+                                <div className="price">$ {product?.price}</div>
+
+                            </div>);
+                        }))
+                    }
+                </>
+
+                
+
+                {/* <div className="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
                     <div className="product"> 
                         <img src={p1} alt="" />
 
@@ -79,7 +116,7 @@ export default function HomeComponent(){
                     <div className="title pt-4 pb-1">Pinafore Dresses</div>
                     <div className="d-flex align-content-center justify-content-center"> <span className="fas fa-star"></span> <span className="fas fa-star"></span> <span className="fas fa-star"></span> <span className="fas fa-star"></span> <span className="fas fa-star"></span> </div>
                     <div className="price">$ 60.0</div>
-                </div>
+                </div> */}
 
             </div>
             

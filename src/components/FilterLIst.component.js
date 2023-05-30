@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Filter from './Filter.component';
 import Chevron from './Chevron.component';
 
-export default function FilterList({ title,items, handleCheck }) {
+export default function FilterList({ title, filterItems, selectItem, handleCheck }) {
     const [isExpanded, setIsExpanded] = useState(true);
 
     function toggleExpanded() {
@@ -31,9 +31,10 @@ export default function FilterList({ title,items, handleCheck }) {
             <div
                 className={itemsCls}
                 >
-                {items.map((item) => (
-                    <Filter key={item.value} 
-                    item={item} 
+                {!!filterItems?.length && filterItems.map((filterItem) => (
+                    <Filter key={filterItem?.slug}
+                    selectItem={selectItem}
+                    filterItem={filterItem} 
                     handleCheck={handleCheck}
                     />
                 ))}

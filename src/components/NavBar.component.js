@@ -3,8 +3,8 @@ export default function NavBar(){
         <nav className="navbar navbar-expand-md navbar-light bg-white">
             <div className="container-fluid p-0">
                 <a className="navbar-brand text-uppercase fw-800" href="/">
-                    <span className="border-red pe-2">Qtech</span>
-                    E-Commerce
+                    <span className="border-red pe-2">RND</span>
+                    Test
                 </a> 
 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#myNav" aria-controls="myNav" aria-expanded="false" aria-label="Toggle navigation">
