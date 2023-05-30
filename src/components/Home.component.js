@@ -1,7 +1,7 @@
 import NavBar from './NavBar.component';
 
 
-export default function HomeComponent({products}){
+export default function HomeComponent({products, loader}){
     return (
         <div className="container bg-white">
             {/* navigation */}
@@ -11,7 +11,11 @@ export default function HomeComponent({products}){
 
                 <>
 
-                    {!products.length &&(
+                    {!!loader &&(
+                        <div style={{width:'100%', minHeight:'100vh', display:'flex', justifyContent:'center', alignItems:'center', fontWeight:'600', fontSize:'20px', margin:'auto auto'}}>Loading...</div>
+                    )}
+
+                    {!loader && !products.length &&(
                         <div style={{width:'100%', minHeight:'100vh', display:'flex', justifyContent:'center', alignItems:'center', fontWeight:'600', fontSize:'20px', margin:'auto auto'}}>No data found according to filtering...</div>
                     )}
 

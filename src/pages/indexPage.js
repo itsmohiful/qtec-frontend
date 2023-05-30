@@ -1,5 +1,4 @@
-import Aside from "../components/Aside.component";
-import FilterList from "../components/FilterLIst.component";
+import SideBarComponent from "../components/Sidebar.component";
 import HomeComponent from "../components/Home.component"
 import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect, useState } from "react";
@@ -7,7 +6,7 @@ import axios from "axios";
 
 export default function IndexPageComponent(){
     const [loader, setLoader] = useState(true);
-    const [getFilterValue, setFilterValue] = useState({brands:[],categories:[],types:[]});
+    
     const [getProduct, setProduct] = useState([]);
 
     //filtering & watch checkbox
@@ -16,9 +15,6 @@ export default function IndexPageComponent(){
     const [selectType, setSelectType] = useState([]);
     const [productUrl, setProductUrl] = useState('http://biprajit.pythonanywhere.com/products/')
 
-
-    const baseUrl = 'http://biprajit.pythonanywhere.com/';
-    
     useEffect(()=>{
         axios.get(productUrl)
         .then(function (response) {
@@ -30,51 +26,6 @@ export default function IndexPageComponent(){
         });
     },[productUrl]);
 
-
-    useEffect(()=>{
-        axios.get(`${baseUrl}brands/`)
-        .then(function (response) {
-
-        setFilterValue((prevState)=>({
-                ...prevState,
-                brands:response.data
-            }
-            ));
-        })
-        .catch((error)=> {
-            // handle error
-            // console.log(error);
-        });
-
-        axios.get(`${baseUrl}categories/`)
-        .then(function (response) {
-
-            setFilterValue((prevState)=>({
-                ...prevState,
-                categories:response.data
-                }
-            ));
-            
-        })
-        .catch((error)=> {
-            // console.log(error);
-        });
-
-        axios.get(`${baseUrl}types/`)
-        .then(function (response) {
-
-            setFilterValue((prevState)=>({
-                ...prevState,
-                types:response.data,
-            }));
-            
-        })
-        .catch((error)=> {
-            
-            // console.log(error);
-        });
-
-    },[])
 
     useEffect(() => {
 
@@ -146,26 +97,17 @@ export default function IndexPageComponent(){
     return (
         <>
             <div style={{ display: 'flex'}}>
-                {!!loader && (<div style={{width:'100%',display:'flex', justifyContent:'center', alignItems:'center', fontWeight:'600', fontSize:'20px', margin:'25% auto'}}>Loading...</div>)}
                 
+                <div style={{ width:'20%', margin:'30px auto',  padding: '15px 5px'}}>
+                    <SideBarComponent selectBrand={selectBrand} selectCategory={selectCategory} selectType={selectType} handleBrandCheck={handleBrandCheck} handleCategoryCheck={handleCategoryCheck} handleTypeCheck={handleTypeCheck}/>
+                </div>
 
-                {!loader && (
-                    <>
-                        <div style={{ width:'20%', margin:'30px auto',  padding: '15px 5px'}}>
-                            <Aside>
-                                <FilterList filterItems={getFilterValue.brands} selectItem={selectBrand} title="Brands" handleCheck={handleBrandCheck}/>
-                                
-                                <FilterList filterItems={getFilterValue.categories} selectItem={selectCategory} title="Categories" handleCheck={handleCategoryCheck}/>
+                        
 
-                                <FilterList filterItems={getFilterValue.types} selectItem={selectType} title="Types" handleCheck={handleTypeCheck}/>
-                            </Aside>
-                        </div>
+                <div style={{ width:'80%'}}>
+                    <HomeComponent products={getProduct} loader={loader}/>
+                </div>
 
-                        <div style={{ width:'80%'}}>
-                            <HomeComponent products={getProduct}/>
-                        </div>
-                    </>
-                )}
             </div>
             
         </>
