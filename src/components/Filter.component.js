@@ -13,7 +13,7 @@ export default function Filter({ filterItem, selectItem, handleCheck }) {
         </div>
 
         <div className="ml-3 text-sm leading-6">
-            <label htmlFor={filterItem?.slug} className="font-medium text-gray-900 cursor-pointer">
+            <label htmlFor={filterItem?.slug} className="font-medium text-gray-200 focus:text-green-950 cursor-pointer">
                 {filterItem?.name}
             </label>
         </div>

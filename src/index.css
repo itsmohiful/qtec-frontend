@@ -12,11 +12,12 @@
 }
 
 body {
-    background-color: bisque
+    background-color: #003045;
 }
 
 .container {
     margin: 45px auto;
+    /* background-color: #044b69; */
 }
 
 .navbar-nav .nav-link {
@@ -45,7 +46,8 @@ body {
     border: none;
     overflow: hidden;
     position: relative;
-    border-radius: 0
+    border-radius: 0;
+    background:#045577;
 }
 
 .container .product-item .product {
@@ -65,27 +67,28 @@ body {
 .container .product-item .product .icons .icon {
     width: 40px;
     height: 40px;
-    background-color: #fff;
+    background: #2b725d;
+    color: #fff;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.6s ease;
+    transition: transform 0.4s ease;
     transform: rotate(180deg);
     cursor: pointer
 }
 
 .container .product-item .product .icons .icon:hover {
-    background-color: #b71c1c;
-    color: #fff
+    background-color: #fff;
+    color: #047938;
 }
 
 .container .product-item .product .icons .icon:nth-last-of-type(3) {
-    transition-delay: 0.2s
+    transition-delay: 0.1s
 }
 
 .container .product-item .product .icons .icon:nth-last-of-type(2) {
-    transition-delay: 0.15s
+    transition-delay: 0.2s
 }
 
 .container .product-item .product .icons .icon:nth-last-of-type(1) {
@@ -108,7 +111,8 @@ body {
 
 .container .product-item .title {
     font-size: 0.95rem;
-    letter-spacing: 0.5px
+    letter-spacing: 0.5px;
+    color:#ddd;
 }
 
 .container .product-item .fa-star {
@@ -119,7 +123,8 @@ body {
 .container .product-item .price {
     margin-top: 10px;
     margin-bottom: 10px;
-    font-weight: 600
+    font-weight: 600;
+    color:#bbb7b7;
 }
 
 .fw-800 {

@@ -2,26 +2,27 @@ import NavBar from './NavBar.component';
 
 
 export default function HomeComponent({products, loader}){
+
     return (
-        <div className="container bg-white">
+        <div className="container">
             {/* navigation */}
             <NavBar />
 
-            <div className="row" style={{paddingLeft:'3rem'}}>
+            <div className="row">
 
                 <>
 
                     {!!loader &&(
-                        <div style={{width:'100%', minHeight:'100vh', display:'flex', justifyContent:'center', alignItems:'center', fontWeight:'600', fontSize:'20px', margin:'auto auto'}}>Loading...</div>
+                        <div style={{width:'100%', minHeight:'100vh', display:'flex', justifyContent:'center', alignItems:'center', fontWeight:'600', fontSize:'20px', margin:'auto auto', color:'#fff'}}>Loading...</div>
                     )}
 
                     {!loader && !products.length &&(
-                        <div style={{width:'100%', minHeight:'100vh', display:'flex', justifyContent:'center', alignItems:'center', fontWeight:'600', fontSize:'20px', margin:'auto auto'}}>No data found according to filtering...</div>
+                        <div style={{width:'100%', minHeight:'100vh', display:'flex', justifyContent:'center', alignItems:'center', fontWeight:'600', fontSize:'20px', margin:'auto auto',color:'#fff'}}>No data found according to filtering...</div>
                     )}
 
                     {!!products.length && (products.map((product, index)=>{
                         return (
-                            <div key={product?.slug + index} className="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
+                            <div key={product?.slug + index} className="col-lg-3 offset-lg-1 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
                                 <div className="product"> 
                                     <img src={product?.image} alt={product?.name} />
 
@@ -32,7 +33,7 @@ export default function HomeComponent({products, loader}){
                                     </ul>
                                 </div>
 
-                                <div className="tag bg-red">{product?.type?.name}</div>
+                                <div className={product?.type?.slug === "new" ? "tag bg-green" : product?.type?.slug === "tag in-stock" ? "tag bg-black" : "tag bg-red"}>{product?.type?.name}</div>
                                 <div className="title pt-4 pb-1">{product?.name}</div>
 
                                 <div className="d-flex align-content-center justify-content-center"> 

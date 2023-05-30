@@ -63,7 +63,7 @@ export default function SideBarComponent(props){
 
             {!!loader && (
                 <Aside>
-                    <div style={{ width:'100%', margin:'20% auto', fontWeight:'600', display:'flex', justifyContent:'center', alignItems:'center'}}>Loading....</div>
+                    <div style={{ width:'100%', margin:'20% auto', fontWeight:'600', display:'flex', justifyContent:'center', alignItems:'center',color:'#fff'}}>Loading....</div>
                 </Aside>
             )}
             {!loader && (

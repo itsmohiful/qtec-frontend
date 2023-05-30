@@ -13,7 +13,10 @@ export default function IndexPageComponent(){
     const [selectBrand, setSelectBrand] = useState([]);
     const [selectCategory, setSelectCategory] = useState([]);
     const [selectType, setSelectType] = useState([]);
-    const [productUrl, setProductUrl] = useState('http://biprajit.pythonanywhere.com/products/')
+    const [productUrl, setProductUrl] = useState('http://biprajit.pythonanywhere.com/products/');
+    let brandUrl = '';
+    let categoryUrl = '';
+    let typeUrl = '';
 
     useEffect(()=>{
         axios.get(productUrl)
@@ -26,19 +29,17 @@ export default function IndexPageComponent(){
         });
     },[productUrl]);
 
-
+    console.log('productUrl',productUrl);
     useEffect(() => {
 
         buildRequestUrl();
         // const requestUrl = buildRequestUrl();
-        // console.log(requestUrl);
+        
     }, [selectBrand,selectCategory,selectType]);
+    
 
     const buildRequestUrl = () => {
-        let brandUrl = '';
-        let categoryUrl = '';
-        let typeUrl = '';
-    
+        
         if (selectBrand.length > 0) {
             brandUrl += `${selectBrand.join(',')}`;
         }
@@ -98,13 +99,13 @@ export default function IndexPageComponent(){
         <>
             <div style={{ display: 'flex'}}>
                 
-                <div style={{ width:'20%', margin:'30px auto',  padding: '15px 5px'}}>
+                <div style={{ width:'15%', margin:'30px auto',  padding: '15px 5px'}}>
                     <SideBarComponent selectBrand={selectBrand} selectCategory={selectCategory} selectType={selectType} handleBrandCheck={handleBrandCheck} handleCategoryCheck={handleCategoryCheck} handleTypeCheck={handleTypeCheck}/>
                 </div>
 
                         
 
-                <div style={{ width:'80%'}}>
+                <div style={{ width:'85%'}}>
                     <HomeComponent products={getProduct} loader={loader}/>
                 </div>
 
